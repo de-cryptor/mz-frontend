@@ -79,10 +79,10 @@ export default function UserReports() {
               }
             />
           }
-          name='Earnings'
-          value='$350.4'
+          name='Total Students'
+          value='114'
         />
-        <MiniStatistics
+        {/* <MiniStatistics
           startContent={
             <IconBox
               w='56px'
@@ -143,10 +143,10 @@ export default function UserReports() {
           }
           name='Total Projects'
           value='2935'
-        />
+        /> */}
       </SimpleGrid>
 
-      <SimpleGrid columns={{ base: 1, md: 2, xl: 2 }} gap='20px' mb='20px'>
+      {/* <SimpleGrid columns={{ base: 1, md: 2, xl: 2 }} gap='20px' mb='20px'>
         <TotalSpent />
         <WeeklyRevenue />
       </SimpleGrid>
@@ -166,7 +166,7 @@ export default function UserReports() {
           <Tasks />
           <MiniCalendar h='100%' minW='100%' selectRange={false} />
         </SimpleGrid>
-      </SimpleGrid>
+      </SimpleGrid> */}
     </Box>
   );
 }

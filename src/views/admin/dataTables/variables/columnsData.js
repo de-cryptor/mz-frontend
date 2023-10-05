@@ -17,6 +17,21 @@ export const columnsDataDevelopment = [
   },
 ];
 
+export const columnsStudentData = [
+  {
+    Header: "Manzil ID",
+    accessor: "manzil_id",
+  },
+  {
+    Header: "Name",
+    accessor: "name",
+  },
+  {
+    Header: "Date of Birth",
+    accessor: "date_of_birth",
+  }
+];
+
 export const columnsDataCheck = [
   {
     Header: "NAME",

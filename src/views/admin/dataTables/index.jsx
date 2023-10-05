@@ -22,12 +22,13 @@
 
 // Chakra imports
 import { Box, SimpleGrid } from "@chakra-ui/react";
-import DevelopmentTable from "views/admin/dataTables/components/DevelopmentTable";
+import DevelopmentTable from "views/admin/dataTables/components/StudentTable";
 import CheckTable from "views/admin/dataTables/components/CheckTable";
 import ColumnsTable from "views/admin/dataTables/components/ColumnsTable";
 import ComplexTable from "views/admin/dataTables/components/ComplexTable";
 import {
   columnsDataDevelopment,
+  columnsStudentData,
   columnsDataCheck,
   columnsDataColumns,
   columnsDataComplex,
@@ -36,21 +37,40 @@ import tableDataDevelopment from "views/admin/dataTables/variables/tableDataDeve
 import tableDataCheck from "views/admin/dataTables/variables/tableDataCheck.json";
 import tableDataColumns from "views/admin/dataTables/variables/tableDataColumns.json";
 import tableDataComplex from "views/admin/dataTables/variables/tableDataComplex.json";
-import React from "react";
+import React, { useState, useEffect }  from "react";
 
 export default function Settings() {
   // Chakra Color Mode
+  const [tableDataDevelopment, setTableDataDevelopment] = useState([]);
+
+  useEffect(() => {
+    // Define the API endpoint URL
+    const apiUrl = 'https://mz-backend.vercel.app/students/?format=json'; // Replace with your API URL
+
+    // Fetch data from the API
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        // Assuming the API response is an object with properties columnsData and tableData
+        setTableDataDevelopment(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
       <SimpleGrid
         mb='20px'
-        columns={{ sm: 1, md: 2 }}
+        columns={{ sm: 1, md: 1 }}
         spacing={{ base: "20px", xl: "20px" }}>
+        
         <DevelopmentTable
-          columnsData={columnsDataDevelopment}
+          columnsData={columnsStudentData}
           tableData={tableDataDevelopment}
         />
-        <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} />
+        {/* <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} />
         <ColumnsTable
           columnsData={columnsDataColumns}
           tableData={tableDataColumns}
@@ -58,7 +78,7 @@ export default function Settings() {
         <ComplexTable
           columnsData={columnsDataComplex}
           tableData={tableDataComplex}
-        />
+        /> */}
       </SimpleGrid>
     </Box>
   );
